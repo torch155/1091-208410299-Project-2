@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <div class="header">
+      <a href="/" class="logo-container">
+        <img src="/img/crown.svg" />
+      </a>
+      <div class="options">
+        <a href="/overview.html" class="option">Shop</a>
+        <a href="/shop" class="option">Contact</a>
+        <a href="/signin" class="option">Logout</a>
+        <a href="#" class="option"><%= username %></a>
+        <div class="cart-icon" onclick="cartToggle()">
+          <img class="shopping-icon" src="/img/shopping-bag.svg" alt="" />
+        </div>
+        <div class="cart-dropdown">
+          <div class="cart-items">
+            <% for(let i=0; i<cartData.length;i++) { %>
+            <div class="cart-item">
+              <img src="<%= cartData[i].local_url %>" alt="item" />
+              <div class="item-details">
+                <span class="name"><%= cartData[i].name %></span>
+                <span class="price"><%= cartData[i].amount %>*<%= cartData[i].price %></span>
+              </div>
+            </div>
+            <% } %>
+            <div class="total">Total: <%= total %></div>
+          </div>
+          <button class="custom-button">GO TO CHECKOUT</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="homepage">
+      <div class="directory-menu">
+       <% for(let i=0; i<brandData.length;i++) { %>
+        <Div class="<%= brandData[i].size %> menu-item">
+          <img
+            class="background-image"
+            src="<%= brandData[i].local_url %>"
+            alt=""
+          />
+          <a href="/hats.html" class="content">
+            <h1 class="title"><%= brandData[i].name.toUpperCase() %></h1>
+            <span class="subtitle">SHOP NOW</span>
+          </a>
+        </Div>
+
+       <% } %>
+      </div>
+    </div>
+
+    <script>
+      function cartToggle() {
+        p = document.querySelector('.cart-dropdown');
+        p.classList.toggle('show');
+      }
+    </script>
+  </body>
+</html>
